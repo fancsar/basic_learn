@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 # @Time   :2019/11/5 22:18
-# @Author :XDF_FCC
-# @Email  :fanchengcheng3@xdf.cn
-# @File   :cktodayone.py
 '''
 1、使用字典推倒是将下面字符串格式的数据，改成字典类型的数据 cook_str='BIDUPSID=D0727533D7147B7;PSTM=1530348042; BAIDUID=B1005C9BC2EB28;
 sugstore=0;__cfduid=d0a13458f8ac2a;BD_UPN=12314353;ispeed_lsm=2;BDORZ=B490B5EBF6F3CD402'
 '''
-cook_str='BIDUPSID=D0727533D7147B7;PSTM=1530348042; BAIDUID=B1005C9BC2EB28; \
+cook_str = 'BIDUPSID=D0727533D7147B7;PSTM=1530348042; BAIDUID=B1005C9BC2EB28; \
 sugstore=0;__cfduid=d0a13458f8ac2a;BD_UPN=12314353;ispeed_lsm=2;BDORZ=B490B5EBF6F3CD402'
 
-cook_dict={i.split('=')[0]:i.split('=')[1] for i in cook_str.split(';')}
+cook_dict = {i.split('=')[0]: i.split('=')[1] for i in cook_str.split(';')}
 print(cook_dict)
 
 '''
@@ -23,18 +20,21 @@ a1 = [[2,54],[4,91],[5,42]] #返回
  b = [[1,50],[2,5],[3,10],[4,42],[5,42],[6,10]] #入参
  b1 = [[1,50],[4,57],[6,52]] #返回
 '''
-a = [[1,50],[2,5],[3,10],[4,42],[5,42],[6,10]]
+a = [[1, 50], [2, 5], [3, 10], [4, 42], [5, 42], [6, 10]]
+
+
 def func(a):
-    count=0
-    b=[]
+    count = 0
+    b = []
     for i in range(len(a)):
-        count+=a[i][1]
-        if count> 50 or a[i][1]>=50:
-            b.append([a[i][0],count])
-            count=0
-        elif i+1 == len(a):
-            b.append([i+1,count])
+        count += a[i][1]
+        if count > 50 or a[i][1] >= 50:
+            b.append([a[i][0], count])
+            count = 0
+        elif i + 1 == len(a):
+            b.append([i + 1, count])
     return b
+
 
 print(func(a))
 # b = [i for i in a if i[1] < 50 ]
@@ -54,10 +54,9 @@ print(func(a))
 现在有以下数据， li1 = ["{'a':11,'b':2}","[11,22,33,44]"] 
 需要转换为以下格式： li1 = [{'a':11,'b':2},[11,22,33,44]] 
 '''
-li1 = ["{'a':11,'b':2}","[11,22,33,44]"]
-li2 = [eval(i) for i in li1 ]
+li1 = ["{'a':11,'b':2}", "[11,22,33,44]"]
+li2 = [eval(i) for i in li1]
 print(li2)
-
 
 '''
 str = """
@@ -74,12 +73,12 @@ list = [{'url': 'www.baidu.com', 'mobilephone': '13760246701', 'pwd': '123456'},
         {'url': 'www.baidu.com', 'mobilephone': '15678934551', 'pwd': '234555'},
         {'url': 'www.baidu.com', 'mobilephone': '15678934551', 'pwd': '234555'}]
 '''
-str = """
+str1 = """
 url:www.baidu.com,mobilephone:13760246701,pwd:123456
 url:www.baidu.com,mobilephone:15678934551,pwd:234555
 url:www.baidu.com,mobilephone:15678934531,pwd:234555
 url:www.baidu.com,mobilephone:15678934541,pwd:234555
 url:www.baidu.com,mobilephone:15678934561,pwd:234555
 """
-list =[{j.split(':')[0]:j.split(':')[1] for j in i} for i in [s.split(',') for s in str.split('\n') if s != '']]
+list = [{j.split(':')[0]: j.split(':')[1] for j in s.split(',')} for s in str1.split('\n') if s != '']
 print(list)
