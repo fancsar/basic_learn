@@ -37,17 +37,6 @@ def func(a):
 
 
 print(func(a))
-# b = [i for i in a if i[1] < 50 ]
-# print(b)
-# print(len(a))
-# def shju(a):
-# b=0
-# for i in [3,51,49,42,42]:
-#     if i < 50:
-#         b+=i
-#         if b > 50:
-#             print(b)
-#             b=0
 
 '''
 3、通过列表推导式完成下面数据类型转换
