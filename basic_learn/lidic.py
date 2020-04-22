@@ -70,4 +70,99 @@ url:www.baidu.com,mobilephone:15678934541,pwd:234555
 url:www.baidu.com,mobilephone:15678934561,pwd:234555
 """
 list = [{j.split(':')[0]: j.split(':')[1] for j in s.split(',')} for s in str1.split('\n') if s != '']
-print(list)
+# print(list)
+
+'''
+一、一个球从100米高度自由落下，每次落地后反跳回原高度的一半；再落下，求它在第10次落地时，共经过多少米？第10次反弹多高？
+'''
+
+
+def fun(n):
+    if n == 1:
+        return 100 / 2
+    else:
+        return fun(n - 1) / 2
+
+
+res = fun(10)
+print(f'第10次反弹的高度是{res}')
+'''
+1 100
+2 100 50 50
+3.100 50 50 25 25 
+4.100 50 50 25 25 12.5 12.5
+'''
+
+
+def fun1(n):
+    if n == 1:
+        return 100
+    else:
+        return (fun(n - 1) * 2) + fun1(n - 1)
+
+
+print('第10次反弹的总路径是{}'.format(fun1(10)))
+
+
+# for循环实现
+def qiuhe(n):
+    s = 0
+    h = 100
+    for i in range(n):
+        s += h
+        h = h / 2
+        s += h
+    print(s - h)
+
+
+qiuhe(10)
+
+'''
+二、古典问题：有一对兔子，第三个月起每个月都生一对兔子，小兔子长到第三个月后每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数为多少？（意味着生长期为2个月） （递归实现）
+'''
+
+
+# 1,1,2,3,5,8,13
+def summ(n):
+    if n == 1 or n == 2:
+        return 2
+    else:
+        return summ(n - 1) + summ(n - 2)
+
+
+print(summ(10))
+
+
+# 循环实现
+def sums(n):
+    s = []
+    for i in range(1, n + 1):
+        if i == 1 or i == 2:
+            s.append(2)  # 前两月时，都是固定值
+        else:
+            s.append(s[i - 3] + s[i - 2])  # 从第三月开始，是前两数之和
+    return f'第{n}月时，兔子总数为{s[-1]}只'
+
+
+print(sums(10))
+
+'''
+三、小明有100元钱 打算买100本书，A类书籍5元一本，B类书籍3元一本，C类书籍1元两本，请用程序算出小明一共有多少种买法?（面试笔试题）
+
+A 20
+B 33
+C 200
+'''
+
+
+def goshop():
+    count = 0
+    for a in range(21):  # 遍历可以买A类书籍的所有本数
+        for b in range(34):  # 遍历可以买B类书籍的所有本数
+            c = 100 - a - b  # 剩下为C类书籍的本数
+            if a * 5 + b * 3 + c * 0.5 <= 100:
+                count += 1
+    return f'小明一共有{count}种买法'
+
+
+print(goshop())
