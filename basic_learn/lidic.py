@@ -166,3 +166,39 @@ def goshop():
 
 
 print(goshop())
+
+"""冒泡排序"""
+aa = [12, 4, 5, 76, 98, 32, 56]
+for i in range(len(aa) - 1):
+    for j in range(len(aa) - 1):
+        if aa[i] > aa[i + 1]:
+            aa[i], aa[i + 1] = aa[i + 1], aa[i]
+print(aa)
+
+'''
+2、 请设计一个装饰器  ，可以给函数扩展登录认证的功能（提示数账号密码，然后进行校验），
+多个函数同时使用这个装饰器， 调用函数的时候，只要登录成功一次，
+后续的函数无需再进行登录（默认的认证账号：qwe123，密码：123456）
+'''
+
+result = 0
+
+
+def login(func):
+    def check():
+        global result
+        if result:
+            func()
+        else:
+            username = input('用户名为：')
+            password = input('密码为：')
+            if username == 'qwe123' and password == '123456':
+                result = 1
+                func()
+
+    return check
+
+
+@login
+def successlogin():
+    print('成功登陆')
